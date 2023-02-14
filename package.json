@@ -12,6 +12,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "sass": "^1.58.1",
     "vue": "^3.2.45"
   },
   "devDependencies": {

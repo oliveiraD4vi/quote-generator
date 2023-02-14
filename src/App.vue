@@ -1,19 +1,17 @@
 <script setup lang="ts">
+import QuoteComponent from "./components/quote/QuoteComponent.vue";
+
 import { onMounted, ref } from "vue";
 import { api } from "./service/api";
+import { Quote } from "./types/Quote";
 
-interface quote {
-  text: string;
-  author: string;
-}
-
-const current = ref<quote>();
-const quotes = ref<quote>();
+const current = ref<Quote>();
+const quotes = ref<Quote>();
 const error = ref<boolean>(false);
 const loading = ref<boolean>(false);
 const disabled = ref<boolean>(false);
 
-const randomItem = (quotes: quote[] | any): void => {
+const randomItem = (quotes: Quote[] | any): void => {
   current.value = quotes[Math.floor(Math.random() * quotes.length)];
 };
 
@@ -41,7 +39,7 @@ onMounted(async () => {
 
 <template>
   <main>
-    {{ current }}
+    <QuoteComponent v-if="current" :quote="current" />
     <button
       class="primary-button"
       :disabled="disabled"
